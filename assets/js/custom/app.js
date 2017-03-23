@@ -162,6 +162,7 @@
       toggleSiblings.triggerLogic(headline);
     } else {
       _this.triggerLogic(_this.getFirstHeadline(tabs.getActiveTabs()));
+      toggleSiblings.triggerLogic(_this.getFirstHeadline(tabs.getActiveTabs()));
     }
   }
 
