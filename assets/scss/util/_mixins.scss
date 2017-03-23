@@ -1,0 +1,22 @@
+/* Mixin for adding fonts =================================================== */
+  @mixin fontFace($family, $src, $style: normal, $weight: normal) {
+    @font-face {
+      font-family: $family;
+      src: url('#{$src}.eot');
+      src: url('#{$src}.eot?#iefix') format('embedded-opentype'),
+           url('#{$src}.woff2') format('woff2'),
+           url('#{$src}.woff') format('woff'),
+           url('#{$src}.ttf')  format('truetype'),
+           url('#{$src}.svg#svgFontName') format('svg');
+      font-style: $style;
+      font-weight: $weight;
+    }
+  }
+/* ========================================================================== */
+@mixin triangle($bwidth: 0 rem-calc(14 14) 0, $bcolor: transparent $swamp transparent transparent) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: $bwidth;
+  border-color: $bcolor;
+}

@@ -1,0 +1,72 @@
+[class^="i-"] {
+	background-image: url(../img/icons.png);
+}
+
+.i-pen {
+	background-position: -52px 0;
+	width: rem-calc(18);
+	height: rem-calc(18);
+}
+
+.i-wand {
+	background-position: 0 -51px;
+	width: rem-calc(16);
+	height: rem-calc(16);
+}
+
+.i-cart {
+	background-position: -21px -51px;
+	width: rem-calc(16);
+	height: rem-calc(16);
+}
+
+.i-globe {
+	background-position: -75px 0;
+	width: rem-calc(15);
+	height: rem-calc(15);
+}
+
+.i-trafficLight {
+	background-position: -75px -43px;
+	width: rem-calc(8);
+	height: rem-calc(16);
+}
+
+.i-group {
+	background-position: -42px -51px;
+	width: rem-calc(16);
+	height: rem-calc(16);
+}
+
+[data-state="is-active"] {
+	.i-pen {
+		background-position: 0 0;
+		width: rem-calc(24);
+		height: rem-calc(23);
+	}
+	.i-wand {
+		background-position: 0 -28px;
+		width: rem-calc(18);
+		height: rem-calc(18);
+	}
+	.i-cart {
+		background-position: -23px -28px;
+		width: rem-calc(18);
+		height: rem-calc(18);
+	}
+	.i-globe {
+		background-position: -52px -23px;
+		width: rem-calc(17);
+		height: rem-calc(17);
+	}
+	.i-trafficLight {
+		background-position: -75px -20px;
+		width: rem-calc(10);
+		height: rem-calc(18);
+	}
+	.i-group {
+		background-position: -29px 0;
+		width: rem-calc(18);
+		height: rem-calc(18);
+	}
+}

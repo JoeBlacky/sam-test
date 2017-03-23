@@ -1,0 +1,38 @@
+/* Common =================================================================== */
+  body {
+    min-width: $minWidth;
+    font: rem-calc(12) $primaryFontFamily;
+    line-height: 1.3;
+    color: $primaryTextColor;
+    background: url(../img/bg.jpg) no-repeat center center / cover;
+    text-align: center;
+    white-space: nowrap;
+    @include breakpoint(medium up) {
+      font-size: rem-calc(16);
+    }
+    &::before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+      width: 0;
+      margin-left: rem-calc(-2);
+      margin-right: rem-calc(-2);
+    }
+  }
+  .page {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    white-space: normal;
+  }
+/* Lists ==================================================================== */
+  .list {
+    .list-item {
+      margin-bottom: rem-calc(20);
+    }
+  }
+  .list--plain {
+    @extend %reset-ul;
+  }
+/* ========================================================================== */

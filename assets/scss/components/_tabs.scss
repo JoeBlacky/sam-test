@@ -1,0 +1,112 @@
+$tabHeadline: '.tabs-headline';
+$tabContent : '.tabs-content';
+$innerContent: '.tabs-content-inner';
+
+.tabs {
+  display: none;
+  position: relative;
+  z-index: 1;
+  &[data-state="is-active"] {
+    display: block;
+  }
+}
+
+.tabs-headlines {
+  display: none;
+  @include breakpoint(large up) {
+    display: block;
+  }
+}
+
+#{$tabHeadline} {
+  position: relative;
+  display: block;
+  font-size: rem-calc(13);
+  padding: rem-calc(10 12);
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border: rem-calc(1) solid $white;
+  border-bottom-color: #f2f2f2;
+  box-shadow: rem-calc(0 0 20) $silver;
+  background: $gallery;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+  background: linear-gradient(to bottom, $gallery 0%, $white 60%);
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+  }
+  &::before {
+    right: rem-calc(15);
+    width: rem-calc(10);
+    height: 0;
+    border-top: rem-calc(1) solid;
+    border-bottom: rem-calc(1) solid;
+  }
+  &::after {
+    height: rem-calc(10);
+    width: 0;
+    right: rem-calc(19);
+    margin-top: rem-calc(-4);
+    border-right: rem-calc(1) solid;
+    border-left: rem-calc(1) solid;
+  }
+  &[data-state="is-active"] {
+    position: relative;
+    z-index: 2;
+    height: rem-calc(40);
+    padding: rem-calc(10 20);
+    font-size: rem-calc(18);
+    color: $black;
+    background: $gallery;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: linear-gradient(to bottom, $gallery 0%, $white 90%);
+    &::after {
+      height: 0;
+    }
+  }
+  @include breakpoint(large up) {
+    display: inline-block;
+    vertical-align: bottom;
+    padding: rem-calc(6 12);
+    border-bottom: none;
+    background: $gallery;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VhZWFlYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYWVhZWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: linear-gradient(to bottom, $gallery 0%, $white 50%, $gallery 100%);
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+#{$tabContent} {
+  box-shadow: rem-calc(0 0 20) $silver;
+}
+
+#{$innerContent} {
+  @include breakpoint(large up) {
+    #{$tabHeadline} {
+      display: none;
+    }
+  }
+  &[data-state="is-active"] {
+    .content {
+      display: block;
+    }
+  }
+  .content {
+    display: none;
+    position: relative;
+    min-height: rem-calc(200);
+    padding: rem-calc(10 13);
+    background: $white;
+    z-index: 3;
+    @include breakpoint(large up) {
+      min-height: rem-calc(364);
+      padding: rem-calc(18 20);
+    }
+  }
+}

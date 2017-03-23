@@ -1,0 +1,130 @@
+%navLinkHoverState {
+	background: $orient;
+	color: $white;
+}
+
+$mobileSidebarElH: rem-calc(40);
+$mobileSidebarElW: rem-calc(50);
+$sidebarNavIconW: rem-calc(24);
+$sidebarNavIconH: $sidebarNavIconW;
+.nav--ordered {
+	counter-reset: nav;
+	.nav-link {
+		&::before {
+			content: counter(nav) '.';
+			counter-increment: nav;
+			position: absolute;
+			margin-left: rem-calc(-18);
+		}
+	}
+}
+
+.sidebar-nav {
+	@extend %pseudo-gradientBorder-parent;
+	&::before {
+		@extend %pseudo-gradientBorder--rtl;
+		top: 100%;
+	}
+	&::after {
+		@extend %pseudo-gradientBorder--left;
+	}
+	.nav-item {
+		position: relative;
+		&::before {
+			@extend %pseudo-gradientBorder--rtl;
+		}
+		&:last-child {
+			&[data-state="is-active"] {
+				> .nav-link {
+					&::after {
+						top: auto;
+						bottom: 100%;
+						@include triangle(0 0 rem-calc(14 14), transparent transparent $swamp transparent);
+					}
+				}
+			}
+		}
+		&[data-state="is-active"] {
+			> .nav-link {
+				@extend %navLinkHoverState;
+				margin-left: rem-calc(-15);
+				padding-left: rem-calc(15);
+				z-index: 2;
+				@include breakpoint(large up) {
+					padding-left: rem-calc(55);
+					font-size: rem-calc(17);
+				}
+				&::before {
+					margin-left: rem-calc(-22);
+				}
+				&::after {
+					content: '';
+					position: absolute;
+					top: 100%;
+					left: 0;
+					@include triangle();
+				}
+				.icon {
+					@include breakpoint(large down) {
+						margin-left: rem-calc(7);
+					}
+				}
+			}
+		}
+		&:hover {
+			> .nav-link {
+				@extend %navLinkHoverState;
+			}
+		}
+	}
+	.nav-link {
+		position: relative;
+		display: block;
+		height: $mobileSidebarElH;
+		text-decoration: none;
+		will-change: background-color, margin, padding, font-size, color;
+		@include breakpoint(large down) {
+			font-size: 0;
+		}
+		@include breakpoint(large up) {
+			height: auto;
+			padding: rem-calc(10 13 10 35);
+			line-height: rem-calc(20);
+			font-size: rem-calc(14);
+			font-family: 'Lucida Sans Unicode';
+		}
+		&--withIcon {
+			@include breakpoint(large up) {
+				padding-right: rem-calc(50);
+			}
+		}
+		.icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		.icon {
+			width: $sidebarNavIconW;
+			height: $sidebarNavIconH;
+			text-align: center;
+			font-size: 0;
+			@include breakpoint(large up) {
+				right: rem-calc(10);
+				left: auto;
+				transform: translate(0,-50%);
+			}
+			&::before {
+	      content: '';
+	      display: inline-block;
+	      vertical-align: middle;
+	      height: 100%;
+	      width: 0;
+	    }
+			i {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+	}
+}
