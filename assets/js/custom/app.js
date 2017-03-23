@@ -170,23 +170,9 @@
     return tab.querySelectorAll('[' + this.config.attr + ']')[0];
   }
 
-  hashTrigger.setFirstHeadlinesActive = function() {
-    var _this = this,
-        headlines = document.querySelectorAll(this.config.tabs.headline),
-        i;
-
-    for (i = 0; i < headlines.length; i++) {
-      if (_this.getNodeIndex(headlines[i]) == 0) {
-        toggleGroup.triggerLogic(headlines[i]);
-        toggleSiblings.triggerLogic(headlines[i]);
-      }
-    }
-  }
-
   hashTrigger.tab = function() {
     var _this = this;
 
-    this.setFirstHeadlinesActive();
     this.setActiveHeadline();
   }
 
@@ -232,7 +218,7 @@
 
     Cookie.setCookie(cname, val, 1);
   }
-// /* Object that responsible for sidebar-navigation 'memory' ================= */
+/* Object that responsible for sidebar-navigation 'memory' ================== */
   var nav = Object.create(rememberCookie);
 
   nav.config = {
@@ -243,6 +229,17 @@
     return document.getElementById(this.config.elId);
   }
 
+  nav.getTriggers = function() {
+    return this.getNav().children;
+  }
+
+  nav.triggerLogic = function(trigger) {
+    var activeHeadline = tabs.getActiveHeadline();
+    hashTrigger.triggerLogic(activeHeadline);
+    toggleGroup.triggerLogic(activeHeadline);
+    toggleSiblings.triggerLogic(activeHeadline);
+  }
+
   nav.init = function() {
     var nav    = this.getNav(),
         index  = Cookie.getCookie(this.config.elId),
@@ -250,8 +247,10 @@
 
     toggleGroup.triggerLogic(target);
     toggleSiblings.triggerLogic(target);
-  }
 
+    this.triggerEvents();
+  }
+/* Object that responsible for tabs ========================================= */
   var tabs = Object.create(Trigger);
 
   tabs.config = {
@@ -313,7 +312,46 @@
     return tab;
   }
 
+  tabs.getActiveTabHeadlines = function() {
+    var headlines;
+
+    if (window.innerWidth > 768) {
+      headlines = tabs.getActiveTabs().children[0].querySelectorAll(this.config.headline)
+    } else {
+      headlines = tabs.getActiveTabs().children[1].querySelectorAll(this.config.headline)
+    }
+
+    return headlines;
+  }
+
+  tabs.getActiveHeadline = function() {
+    var _this = this,
+        headlines = this.getActiveTabHeadlines(),
+        i, headline;
+
+    for (i = 0; i < headlines.length; i++) {
+       if (headlines[i].getAttribute(_this.state.attr) == _this.state.active) {
+        headline = headlines[i];
+      }
+    }
+
+    return headline;
+  }
+
+  tabs.setFirstHeadlinesActive = function() {
+    var _this = this,
+        headlines = document.querySelectorAll(this.config.headline),
+        i;
+    for (i = 0; i < headlines.length; i++) {
+      if (_this.getNodeIndex(headlines[i]) == 0) {
+        toggleGroup.triggerLogic(headlines[i]);
+        toggleSiblings.triggerLogic(headlines[i]);
+      }
+    }
+  }
+
   tabs.init = function() {
+    this.setFirstHeadlinesActive();
     this.insertClonedHeadlines();
   }
   tabs.init();
